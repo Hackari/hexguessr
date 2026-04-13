@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hex Guesser</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-layout">
+        <div class="container main-content">
+            <header>
+                <div class="header-top">
+                    <h1>Hex Guesser</h1>
+                    <div class="high-score-badge">Best: <span id="high-score">0.0</span>%</div>
+                </div>
+                <p>Can you guess the code of the color below?</p>
+            </header>
+
+            <main>
+                <div class="mode-toggle">
+                    <button id="mode-hex-btn" class="mode-btn active">Hex Input</button>
+                    <button id="mode-slider-btn" class="mode-btn">RGB Sliders</button>
+                </div>
+
+                <div class="color-display">
+                    <div id="target-color" class="color-block">
+                        <span class="label">Target</span>
+                    </div>
+                    <div id="guess-color" class="color-block hidden">
+                        <span class="label" id="guess-label">Your Guess</span>
+                    </div>
+                </div>
+
+                <div id="hex-input-section" class="input-section">
+                    <div class="input-wrapper">
+                        <span class="hash">#</span>
+                        <input type="text" id="hex-input" placeholder="000000" maxlength="6" autocomplete="off" spellcheck="false">
+                    </div>
+                </div>
+
+                <div id="slider-input-section" class="slider-section hidden">
+                    <div class="slider-group">
+                        <label class="r-text">R</label>
+                        <input type="range" id="slider-r" min="0" max="255" value="128">
+                        <span id="val-r">128</span>
+                    </div>
+                    <div class="slider-group">
+                        <label class="g-text">G</label>
+                        <input type="range" id="slider-g" min="0" max="255" value="128">
+                        <span id="val-g">128</span>
+                    </div>
+                    <div class="slider-group">
+                        <label class="b-text">B</label>
+                        <input type="range" id="slider-b" min="0" max="255" value="128">
+                        <span id="val-b">128</span>
+                    </div>
+                </div>
+
+                <button id="submit-btn">Check Match</button>
+
+                <div id="results" class="results-section hidden">
+                    <div class="score-display">
+                        <h2><span id="score-value">0</span>%</h2>
+                        <p>Similarity Index</p>
+                    </div>
+                    
+                    <div class="stats">
+                        <p>Actual: <span id="actual-hex"></span></p>
+                        <p>Yours: <span id="yours-hex"></span></p>
+                    </div>
+
+                    <div class="rgb-graph">
+                        <div class="channel-group">
+                            <span class="channel-label r-label">R</span>
+                            <div class="bars">
+                                <div class="bar-wrapper" title="Actual Red"><div class="bar r-actual" id="bar-r-actual"></div></div>
+                                <div class="bar-wrapper" title="Your Red"><div class="bar r-guess" id="bar-r-guess"></div></div>
+                            </div>
+                        </div>
+                        <div class="channel-group">
+                            <span class="channel-label g-label">G</span>
+                            <div class="bars">
+                                <div class="bar-wrapper" title="Actual Green"><div class="bar g-actual" id="bar-g-actual"></div></div>
+                                <div class="bar-wrapper" title="Your Green"><div class="bar g-guess" id="bar-g-guess"></div></div>
+                            </div>
+                        </div>
+                        <div class="channel-group">
+                            <span class="channel-label b-label">B</span>
+                            <div class="bars">
+                                <div class="bar-wrapper" title="Actual Blue"><div class="bar b-actual" id="bar-b-actual"></div></div>
+                                <div class="bar-wrapper" title="Your Blue"><div class="bar b-guess" id="bar-b-guess"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graph-legend">
+                        <span class="legend-item"><span class="legend-color actual"></span> Actual</span>
+                        <span class="legend-item"><span class="legend-color guess"></span> Yours</span>
+                    </div>
+
+                    <button id="next-btn" class="secondary-btn">Next Color</button>
+                </div>
+                
+                <p id="error-msg" class="error hidden">Please enter a valid 3 or 6 character hex code.</p>
+            </main>
+        </div>
+
+        <aside class="sidebar">
+            <h3>History</h3>
+            <div id="history-list" class="history-list">
+                <p class="empty-history">No guesses yet.</p>
+            </div>
+        </aside>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
